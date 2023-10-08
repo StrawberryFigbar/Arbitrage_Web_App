@@ -1,0 +1,58 @@
+{% extends "base.html" %} {% block style %}
+<link rel="stylesheet" type="text/css" href="/static/styles/arb_calc.css" />
+{% endblock %} {% block title %}arb_calc {% endblock %} {% block content %}
+<form method="POST" id="arb-form">
+  <div class="container py-5 h-40">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-10 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-lg" style="border-radius: 0.5rem">
+          <div class="card-body p-4 text-center">
+            <h5 class="mb-5">Arbitrage Calculator</h5>
+            <div class="form-outline mb-3 d-flex justify-content-between">
+              <div class="w-48 mr-5"></div>
+            </div>
+            <div id="odds-container">
+              <!-- Odds input fields will be generated here -->
+            </div>
+            <label class="form-label" for="stake">Total Stake</label>
+            <input
+              type="number"
+              name="stake"
+              id="stake"
+              class="form-control form-control-lg"
+            />
+            {% if arbitrage_percent == 0%} {% elif arbitrage_percent < 100 %}
+            <div class="d-flex justify-content-center">
+              <p class="font-green">
+                Arbitrage Percent = {{ arbitrage_percent }}%
+              </p>
+            </div>
+            {% for stake in stakes %}
+            <div class="d-flex justify-content-start">
+              <p>Stake #{{ loop.index }} = ${{ stake }}</p>
+            </div>
+            {% endfor %} {% else %}
+            <div class="d-flex justify-content-center">
+              <p class="font-red">
+                Arbitrage Percent = {{ arbitrage_percent }}%
+              </p>
+            </div>
+            <div class="d-flex justify-content-center">
+              <p class="font-red">Not an arbitrage opportunity</p>
+            </div>
+            {% endif %}
+            <div class="d-flex mt-5 mb-5 justify-content-between">
+              <button class="btn-standard align-right small" type="button">
+                Add Odds
+              </button>
+              <button class="btn-standard align-right small" type="submit">
+                Calculate
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,234 @@
+/* Card Style */
+
+.card {
+  border-radius: 10px;
+  filter: drop-shadow(0 5px 10px 0 #ffffff);
+  width: 350px;
+  height: 200px;
+  background-color: #ffffff;
+  padding: 20px;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  transition: 0.6s ease-in;
+}
+.card-small {
+  width: 100px !important;
+  height: 100px !important;
+}
+a:link {
+  color: #3b3641;
+}
+
+a:visited {
+  color: #3b3641;
+}
+.spread {
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
+.card-small i {
+  font-size: 300%;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -15px;
+  right: -15px;
+  background: #3b3641;
+  height: 220px;
+  width: 25px;
+  border-radius: 32px;
+  transform: scale(1);
+  transform-origin: 50% 50%;
+  transition: transform 0.25s ease-out;
+}
+
+.card:hover::before {
+  transition-delay: 0.2s;
+
+  transform: scale(40);
+}
+
+.card:hover {
+  color: #ffffff;
+}
+
+.card p {
+  padding: 10px 0;
+}
+/* Social Button Style */
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.social-buttons ul {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+ul li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+ul li a {
+  display: block;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  font-size: 40px;
+  text-align: center;
+  text-decoration: none;
+  color: #404040;
+  margin: 0 30px;
+  transition: 0.5s;
+}
+
+ul li a span {
+  position: absolute;
+  transition: transform 0.5s;
+}
+ul li a span:nth-child(1),
+ul li a span:nth-child(3) {
+  width: 100%;
+  height: 3px;
+  background: #404040;
+}
+ul li a span:nth-child(1) {
+  top: 0;
+  left: 0;
+  transform-origin: right;
+}
+ul li a:hover span:nth-child(1) {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s;
+}
+
+ul li a span:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  transform-origin: left;
+}
+ul li a:hover span:nth-child(3) {
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s;
+}
+
+ul li a span:nth-child(2),
+ul li a span:nth-child(4) {
+  width: 3px;
+  height: 100%;
+  background: #404040;
+}
+ul li a span:nth-child(2) {
+  top: 0;
+  left: 0;
+  transform: scale(0);
+  transform-origin: bottom;
+}
+ul li a:hover span:nth-child(2) {
+  transform: scale(1);
+  transform-origin: top;
+  transition: transform 0.5s;
+}
+ul li a span:nth-child(4) {
+  top: 0;
+  right: 0;
+  transform: scale(0);
+  transform-origin: top;
+}
+ul li a:hover span:nth-child(4) {
+  transform: scale(1);
+  transform-origin: bottom;
+  transition: transform 0.5s;
+}
+
+.paypal:hover {
+  color: #3b5998;
+}
+.paypal:hover span {
+  background: #3b5998;
+}
+.linkedin:hover {
+  color: #1da1f2;
+}
+.linkedin:hover span {
+  background: #1da1f2;
+}
+.instagram:hover {
+  color: #c32aa3;
+}
+.instagram:hover span {
+  background: #c32aa3;
+}
+.google:hover {
+  color: #dd4b39;
+}
+.google:hover span {
+  background: #dd4b39;
+}
+ul li a .linkedin {
+  color: #1da1f2;
+}
+ul li a:hover:nth-child(3) {
+  color: #c32aa3;
+}
+ul li a:hover:nth-child(4) {
+  color: #dd4b39;
+}
+
+.tools-bar {
+  margin-top: 50px;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Set minimum height to make it full-screen */
+}
+
+/* Dynamic CSS adjustments */
+@media screen and (max-width: 768px) {
+  ul li a {
+    width: 75px;
+    height: 75px;
+    line-height: 75px;
+    font-size: 30px;
+  }
+  .spread {
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+  .socials {
+    font-size: 25px;
+  }
+}
+@media screen and (max-width: 550px) {
+  ul li a {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+  }
+  .socials {
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,192 @@
+{% extends "base.html" %} {% block title %}Finder{% endblock %} {% block content
+%}
+
+<form method="POST">
+  <table id="example" class="table table-striped" style="width: 100%">
+    <thread>
+      <tr>
+        <th>Sport Key</th>
+        <th>Earnings</th>
+        <th>Arbitrage %</th>
+        <th>Bookmaker</th>
+        <th>Outcome</th>
+        <th>Odds</th>
+        <th>Bet Amount</th>
+      </tr>
+    </thread>
+    <tbody>
+      {% for event in user.events %} {% for outcome in event.outcomes %}
+      <tr>
+        {% if loop.first %}
+        <td rowspan="{{ event.outcomes|length }}">{{ event.sports_key }}</td>
+        <td rowspan="{{ event.outcomes|length }}">{{ event.earnings }}</td>
+        <td rowspan="{{ event.outcomes|length }}">
+          {{ event.arbitrage_percent }}
+        </td>
+        {% endif %}
+        <!-- This section is for checking Book Makers and returning a link instead of just the name-->
+        {% if outcome.bookmaker == 'Barstool Sportsbook' %}
+        <td>
+          <a href="https://www.barstoolsportsbook.com/" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'BetOnline.ag' %}
+        <td>
+          <a href="https://www.betonline.ag/" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'BetMGM' %}
+        <td>
+          <a href="https://sports.nj.betmgm.com/en/sports" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'BetRivers' %}
+        <td>
+          <a href="https://www.betrivers.com/" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'BetUS' %}
+        <td>
+          <a href="https://www.betus.com.pa/" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'Bovada' %}
+        <td>
+          <a href="https://www.bovada.lv/" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'DraftKings' %}
+        <td>
+          <a href="https://www.draftkings.com/" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'FanDuel' %}
+        <td>
+          <a href="https://sportsbook.fanduel.com/sports" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'FOX Bet' %}
+        <td>
+          <a href="https://www.foxbet.com/" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'LowVig.ag' %}
+        <td>
+          <a href="https://www.lowvig.ag/" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'MyBookie.ag' %}
+        <td>
+          <a href="https://mybookie.ag/" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'PointsBet (US)' %}
+        <td>
+          <a href="https://nj.pointsbet.com/sports" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'SugarHouse' %}
+        <td>
+          <a href="https://www.playsugarhouse.com/" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'SuperBook' %}
+        <td>
+          <a href="https://co.superbook.com/sports" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'TwinSpires' %}
+        <td>
+          <a href="https://www.twinspires.com/" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'Unibet' %}
+        <td>
+          <a href="https://nj.unibet.com/" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'William Hill (US)' %}
+        <td>
+          <a href="https://www.williamhill.com/us/nj/bet/" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'WynnBET' %}
+        <td>
+          <a href="https://www.wynnbet.com/" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'Bally Bet' %}
+        <td>
+          <a href="https://www.ballybet.com/" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'betPARX' %}
+        <td>
+          <a href="https://betparx.com/#home" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% elif outcome.bookmaker == 'Tipico' %}
+        <td>
+          <a href="https://sportsbook-nj.tipico.us/home" target="_blank"
+            >{{ outcome.bookmaker }}</a
+          >
+        </td>
+        {% else %}
+        <td>{{outcome.bookmaker}}</td>
+        {% endif %}
+        <!-- End of the Bookmaker Setion-->
+        <td>{{ outcome.name }}</td>
+        <td>{{ outcome.odds }}</td>
+        <td onclick="copy(this)" class="pointer" class="copytip">
+          {{outcome.bet_amount}}
+        </td>
+      </tr>
+
+      {% endfor %}
+      <tr class="event-divider"></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-2">
+        <!-- Adjust the column width as needed -->
+        <input
+          name="bet_amount"
+          type="number"
+          class="input form-control"
+          id="bet_amount"
+          placeholder="Bet Amount"
+          value="{{user.bet_amount}}"
+        />
+      </div>
+      <div class="col-md-0">
+        <!-- Adjust the column width as needed -->
+        <button class="btn-standard align-right small" type="submit">
+          Find Bet
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}

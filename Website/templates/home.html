@@ -1,0 +1,119 @@
+{% extends "base.html" %} {% block style%}
+<link rel="stylesheet" type="text/css" href="/static/styles/home.css" /> {%
+endblock %}{% block title %}Home{% endblock %} {% block content %}
+<div class="d-flex justify-content-center align-items-center mt-5">
+  <h1>BookieBreaker.com</h1>
+</div>
+<div class="container mt-5">
+  <div class="row justify-content-center mx-3">
+    <div class="card mx-1">
+      <h4>What is a BookieBreaker?</h4>
+      <p>
+        Bookie breaker is a free-to-use arbitrage betting application, meant to
+        allow new bettors to learn and test out arbitrage sports betting.
+      </p>
+    </div>
+    <div class="card mx-1">
+      <h4>How do I use BookieBreaker?</h4>
+      <p>
+        BookieBreaker's multiple tools can be used either together or
+        separately, to place risk-free sports bets with a guaranteed profit
+        margin.
+      </p>
+    </div>
+    <div class="card mx-1">
+      <h4>How should I get started?</h4>
+      <p>
+        It is recommended to start by creating an account; this gives access to
+        all features of BookieBreaker. Also, please check the Help page for any
+        questions.
+      </p>
+    </div>
+  </div>
+</div>
+<div class="tools-bar">
+  <div class="d-flex justify-content-center">
+    <h2>Tools</h2>
+  </div>
+  <div class="d-flex justify-content-center mt-5">
+    <a href="arb-calc" class="spread">
+      <div class="card card-small"><i class="fas fa-calculator"></i></div>
+    </a>
+    {%if user.is_authenticated %}
+    <a href="bet-finder" class="spread">
+      <div class="card card-small"><i class="fab fa-searchengin"></i></div>
+    </a>
+    {%else %}
+    <a href="sign-in" class="spread">
+      <div class="card card-small"><i class="fab fa-searchengin"></i></div>
+    </a>
+    {% endif %}
+    <a href="help" class="spread">
+      <div class="card card-small"><i class="fas fa-question"></i></div>
+    </a>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center align-items-center mt-5">
+  <h2 class="socials">Socials</h2>
+</div>
+<div
+  class="social-buttons d-flex flex-column justify-content-center align-items-center mt-5"
+>
+  <ul>
+    <li class="mt-5">
+      <a
+        class="paypal"
+        target="_blank"
+        href="https://www.paypal.com/paypalme/BenDormody"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <i class="fab fa-paypal" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="mt-5">
+      <a
+        class="linkedin"
+        target="_blank"
+        href="https://www.linkedin.com/in/benjamin-dormody-799609259"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="mt-5">
+      <a
+        class="instagram"
+        target="_blank"
+        href="https://www.instagram.com/ben_dormody/"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <i class="fab fa-instagram" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="mt-5">
+      <a
+        class="google"
+        target="_blank"
+        href="mailto:jonnycupcakes606@gmail.com"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <i class="fab fa-google-plus" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
+
+  {% endblock %}
+</div>

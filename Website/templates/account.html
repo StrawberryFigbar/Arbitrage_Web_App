@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block title %}Account{% endblock %} {% block
+content %}
+<section>
+  <section class="hidden">
+    <div class="container py-5 h-40 relative mt-5 col-md-4">
+      <!-- Sign out button -->
+      <div class="row d-flex justify-content-end">
+        <a href="/sign-out">Sign Out</a>
+      </div>
+      <!-- Api Key details -->
+      <div class="row d-flex justify-content-center h-100">
+        <div class="col-md-6">
+          <h5>Account</h5>
+          <div class="mt-5">
+            {% if user.key %} {% for key in user.key %}
+            <b>Api Key:</b>
+            <div class="api-key-container">
+              {{ key.text }} <a class="small" href="/account/api">change</a>
+            </div>
+            <b>Last Updated:</b>
+            <br />
+            {{ key.date }} {% endfor %} {% else %}
+            <a href="/account/api" class="btn-standard"> Add new API key</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Grey bar separating the section -->
+    <hr
+      class="mt-5"
+      style="
+        border: 1px solid #ccc;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        width: 50%;
+      "
+    />
+  </section>
+</section>
+{% endblock %}
