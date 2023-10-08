@@ -22,9 +22,16 @@ def create_app():
 
     INSTANCE_NAME = "gcloudInstanceName"
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+mysqldb://root:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}?unix_socket=/cloudsql/{PROJECT_ID}:{INSTANCE_NAME}"
+    IS_LOCAL = True
 
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
+    # For local deployment creates local database instead of connecting to gcloud database
+    if IS_LOCAL:
+        app_root = os.path.dirname(os.path.abspath(__file__))
+        db_path = os.path.join(app_root, 'database.db')
+        app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
+    else:
+        app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+mysqldb://root:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}?unix_socket=/cloudsql/{PROJECT_ID}:{INSTANCE_NAME}"
+        app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
     db.init_app(app)
 
     from .models import User
